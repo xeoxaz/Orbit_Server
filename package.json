@@ -1,0 +1,17 @@
+{
+  "name": "sp-server",
+  "version": "0.0.1",
+  "description": "Space Command Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "space",
+    "command",
+    "server"
+  ],
+  "author": "Xeoxaz@outlook.com",
+  "license": "ISC",
+  "type": "module"
+}
