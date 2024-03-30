@@ -44,6 +44,7 @@ $(()=>{
                     $(`#${user.socket_id}`).append(`
                         <p><b>Motherboard</b>: ${user.system.motherboard}</p>
                         <p><b>CPU</b>: ${user.system.cpu}</p>
+                        <p><b>Ram</b>: ${user.system.ram}</p>
                     `);
                 }else{
                     $(`#${user.socket_id}`).append(`

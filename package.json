@@ -1,17 +1,21 @@
 {
-  "name": "sp-server",
+  "name": "orbit-server",
   "version": "0.0.1",
-  "description": "Space Command Server",
-  "main": "index.js",
+  "description": "Xeoxaz's Orbit Server",
+  "main": "Core.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "space",
-    "command",
-    "server"
+    "Xeoxaz",
+    "Orbit",
+    "Server"
   ],
   "author": "Xeoxaz@outlook.com",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
 }
