@@ -12,6 +12,9 @@ Alternativly it's for anyone who needs a way to gather a computers information o
 ### Contact
 Website: [Xeoxaz](https://xeoxaz.com/)
 
+### v0.0.3 Web UI
+![v0 0 3](https://github.com/xeoxaz/Orbit_Server/assets/108138638/b2a93ad9-8a71-4647-9d11-4a57b614f248)
+
 ### v0.0.2 Web UI
 ![v0 0 2](https://github.com/xeoxaz/Orbit_Server/assets/108138638/8c4bacb9-1392-4613-9cf6-a41c7f525729)
 
