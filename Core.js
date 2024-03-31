@@ -1,5 +1,10 @@
-// Space Command Server
+//
+// Thanks for checking this project out.
+//
+// Email: Xeoxaz@outlook.com
+//
 console.clear();
+process.title = "Orbit Server";
 
 // Import
 import express from "express";
@@ -11,6 +16,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server,
   {
+    pingInterval: 5000,
     cors: {
       origin: "*",
       credentials: false
@@ -18,10 +24,8 @@ const io = new Server(server,
   }
 );
 
-// Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-// Example route to serve the index.html file
 app.get('/', (req, res) => {
   res.sendFile('index.html', { root: '.' })
 });
@@ -34,6 +38,7 @@ io.on("connection", (socket) => {
   
   var user = {
     socket_id: socket.id
+    // color
   }
   connected.push(user);
 
@@ -44,6 +49,18 @@ io.on("connection", (socket) => {
         console.log(`Upgraded ${_user.socket_id} to: ${_type}.`);
       }
     });
+  });
+
+  socket.on("_pong", (_ping)=>{
+
+    var current_time = Math.floor(new Date().getTime() / 1000);
+    var ms = current_time - _ping;
+
+      connected.forEach((_user, _index)=>{
+          if(_user.socket_id == socket.id){
+              connected[_index].ping = `${ms}`;
+          }
+      });
   });
 
   socket.on("_hostname", (_hostname)=>{
@@ -77,12 +94,6 @@ io.on("connection", (socket) => {
     });
   });
 });
-
-setInterval(()=>{
-  // Ping | Update to clients
-  
-}, 5000);
-
 
 // Port
 const PORT = process.env.PORT || 2163;
