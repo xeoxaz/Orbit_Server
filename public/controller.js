@@ -5,21 +5,24 @@ $(()=>{
 
         const url = new URL(window.location.href);
         const hostname = url.hostname;
-        socket.emit('_hostname', hostname)
+        socket.emit('_hostname', hostname);
 
         $('#status').html(`
             <p>Currently <b>connected</b> to Space Command.</p>
+            <p>Connected clients: <b id='count'>...</b></p>
         `);
     });
 
+    //
+    // get ping
+    //
+    socket.io.on('ping', ()=>{
+        socket.emit('_pong', Math.floor(new Date().getTime() / 1000));
+    });
+
     socket.on('_connected', (_connected)=>{
+        $('#count').html(`${_connected.length}`);
         $('#users').html("");
-        $('#users').append(`
-            <fieldset>
-                <legend>Connected</legend>
-                <p>There are <b>${_connected.length}</b> currently connected.</p>
-            </fieldset>
-        `)
         _connected.forEach(user => {
             $('#users').append(`
                 <fieldset id='${user.socket_id}'>
@@ -27,17 +30,15 @@ $(()=>{
                 </fieldset>
             `);
 
+            $(`#${user.socket_id}`).append(`
+                <legend>${user.hostname} <div class='ping'></div></legend>
+                <p><b>Type</b>: ${user.type}</p>
+            `);
+
             if(user.type == "web"){
-                $(`#${user.socket_id}`).append(`
-                    <legend>${user.hostname}</legend>
-                    <p><b>Socket</b>: ${user.socket_id}</p>
-                    <p><b>Type</b>: ${user.type}</p>
-                `);
+                // Browser info maybe?
             }else{
                 $(`#${user.socket_id}`).append(`
-                    <legend>${user.hostname}</legend>
-                    <p><b>Socket</b>: ${user.socket_id}</p>
-                    <p><b>Type</b>: ${user.type}</p>
                     <hr>
                 `);
                 if(user.system){
@@ -52,9 +53,18 @@ $(()=>{
                     `);
                 }
             }
+
+            if(user.ping){
+                $(`#${user.socket_id} .ping`).html(`
+                    <p style='color: aqua'>${user.ping}</p>ms
+                `);
+            }
         });
     });
 
+    //
+    // ping server for updates
+    //
     setInterval(() => {
         socket.emit('_connected');
     }, 5000);

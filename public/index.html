@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Space Command</title>
+        <title>Orbit</title>
         <script src="/jquery-3.7.1.js"></script>
         <script src="/socket.io.esm.min.js"></script>
         <script src="/controller.js"></script>
@@ -9,12 +9,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <fieldset>
-            <legend>Connection</legend>
-            <p id="status">Loading..</p>
-        </fieldset>
-        <div id="users">
-            
+        <div id="main">
+            <div id="header">
+                <h1>Orbit</h1>
+            </div>
+            <fieldset>
+                <legend>Connection</legend>
+                <p id="status">Loading..</p>
+            </fieldset>
         </div>
+        <fieldset>
+            <legend>Clients</legend>
+            <div id="users">
+                <p>Looking for clients..</p>
+            </div>
+        </fieldset>
+        <div id="footer"><p>Xeoxaz • Project Orbit • 2024</p></div>
     </body>
 </html>
