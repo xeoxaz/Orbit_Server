@@ -58,8 +58,14 @@ $(()=>{
                 </fieldset>
             `);
 
+            // added, self identify
+            var me = "";
+            if(socket.id == user.socket_id){
+                me = "<p>This is <b>you</b>.</p>"
+            }
             $(`#${user.socket_id}`).append(`
                 <legend>${user.hostname} <div class='ping'></div></legend>
+                ${me}
                 <p><b>Type</b>: ${user.type}</p>
             `);
 
